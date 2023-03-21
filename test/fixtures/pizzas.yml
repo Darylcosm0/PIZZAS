@@ -2,8 +2,8 @@
 
 one:
   name: MyString
-  ingredients: MyString
+  ingredients: MyText
 
 two:
   name: MyString
-  ingredients: MyString
+  ingredients: MyText

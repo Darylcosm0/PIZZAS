@@ -1,8 +1,12 @@
-# config/routes.rb
 Rails.application.routes.draw do
-  resources :restaurants, only: [:index, :show, :destroy] do
-    resources :pizzas, only: [:index], controller: 'restaurant_pizzas'
-  end
-  resources :pizzas, only: [:index]
-  resources :restaurant_pizzas, only: [:create]
+  # Restaurants routes
+  get "/restaurants", to: "restaurants#index"
+  get "/restaurants/:id", to: "restaurants#show"
+  delete "/restaurants/:id", to: "restaurants#destroy"
+
+  # Pizzas routes
+  get "/pizzas", to: "pizzas#index"
+
+  # RestaurantPizzas routes
+  post "/restaurant_pizzas", to: "restaurant_pizzas#create"
 end

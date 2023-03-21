@@ -1,10 +1,31 @@
-# db/seeds.rb
-restaurant1 = Restaurant.create(name: "Sottocasa NYC", address: "298 Atlantic Ave, Brooklyn, NY 11201")
-restaurant2 = Restaurant.create(name: "PizzArte", address: "69 W 55th St, New York, NY 10019")
+puts "Seeding...."
 
-pizza1 = Pizza.create(name: "Cheese", ingredients: "Dough, Tomato Sauce, Cheese")
-pizza2 = Pizza.create(name: "Pepperoni", ingredients: "Dough, Tomato Sauce, Cheese, Pepperoni")
+require 'faker'
 
-restaurant1.restaurant_pizzas.create(pizza: pizza1, price: 10)
-restaurant1.restaurant_pizzas.create(pizza: pizza2, price: 12)
-restaurant2.restaurant_pizzas.create(pizza: pizza1, price: 8)
+# Create restaurants
+5.times do
+  Restaurant.create(
+    name: Faker::Restaurant.name,
+    address: Faker::Address.full_address
+  )
+end
+
+# Create pizzas
+10.times do
+  Pizza.create(
+    name: Faker::Food.dish,
+    ingredients: Faker::Food.ingredients
+  )
+end
+
+# Create restaurant pizzas
+15.times do
+  RestaurantPizza.create(
+    restaurant: Restaurant.all.sample,
+    pizza: Pizza.all.sample,
+    price: rand(1.0..30.0).round(2)
+  )
+end
+
+
+puts "Seeding Done!"
